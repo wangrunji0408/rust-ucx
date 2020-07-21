@@ -6,22 +6,22 @@ macro_rules! set_active_message_handler
 {
 	($_count: ident, $a_count: ident, $count: expr)  =>
 	{
-		interpolate_idents!
+		paste::item!
 		{
 			/// Set an active message handler for active message identifier [$count].
 			#[inline(always)]
-        	pub fn [set_active_message_handler $_count](&mut self, active_message_handler: [$a_count], flags: uct_cb_flags) -> Result<(), ErrorCode>
+        	pub fn [<set_active_message_handler $_count>](&mut self, active_message_handler: [<$a_count>], flags: uct_cb_flags) -> Result<(), ErrorCode>
         	{
-				let former_active_message_handler = self.[active_message_handler $_count].take();
-				self.[active_message_handler $_count] = Some(active_message_handler);
-				let callback_data = self.[active_message_handler $_count].as_mut().unwrap() as *mut _;
-				let result = self.set_active_message_handler_for_active_messages_of_identifier(ActiveMessageIdentifier($count), Self::[callback_on_active_message_receive $_count], callback_data, flags);
+				let former_active_message_handler = self.[<active_message_handler $_count>].take();
+				self.[<active_message_handler $_count>] = Some(active_message_handler);
+				let callback_data = self.[<active_message_handler $_count>].as_mut().unwrap() as *mut _;
+				let result = self.set_active_message_handler_for_active_messages_of_identifier(ActiveMessageIdentifier($count), Self::[<callback_on_active_message_receive $_count>], callback_data, flags);
 				drop(former_active_message_handler);
 				result
         	}
         	
         	#[inline(always)]
-        	unsafe extern "C" fn [callback_on_active_message_receive $_count](arg: *mut c_void, data: *mut c_void, length: usize, flags: c_uint) -> ucs_status_t
+        	unsafe extern "C" fn [<callback_on_active_message_receive $_count>](arg: *mut c_void, data: *mut c_void, length: usize, flags: c_uint) -> ucs_status_t
         	{
         		debug_assert!(!arg.is_null(), "arg is null");
         		let raw_handler = NonNull::new_unchecked(arg as *mut $a_count);

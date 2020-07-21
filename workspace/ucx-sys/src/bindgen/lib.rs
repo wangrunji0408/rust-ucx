@@ -36,10 +36,10 @@ use ::libc::off_t;
 use ::libc::sockaddr;
 use ::libc::socklen_t;
 
-#[link(name = "ucm", kind = "static-nobundle")]
-#[link(name = "ucs", kind = "static-nobundle")]
-#[link(name = "ucp", kind = "static-nobundle")]
-#[link(name = "uct", kind = "static-nobundle")]
+#[link(name = "ucm")]
+#[link(name = "ucs")]
+#[link(name = "ucp")]
+#[link(name = "uct")]
 extern "C"
 {
 }

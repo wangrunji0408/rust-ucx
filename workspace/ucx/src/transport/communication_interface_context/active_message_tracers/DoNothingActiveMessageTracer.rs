@@ -11,7 +11,7 @@ impl ActiveMessageTracer for DoNothingActiveMessageTracer
 	#[inline(always)]
 	fn trace(&self, _active_message_trace_type: uct_am_trace_type_t, _active_message_identifier: ActiveMessageIdentifier, _read_only: UcxAllocatedByteBuffer, write_debug_c_string_to: &mut [c_char])
 	{
-		const CNul: i8 = 0;
+		const CNul: c_char = 0;
 		unsafe { * write_debug_c_string_to.get_unchecked_mut(0) = CNul };
 	}
 }

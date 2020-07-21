@@ -4,9 +4,9 @@
 
 #![allow(non_upper_case_globals)]
 #![deny(missing_docs)]
-#![feature(thread_local)]
-#![feature(plugin)]
-#![plugin(interpolate_idents)]
+#![allow(unused_attributes)]
+#![allow(deprecated)]
+// #![feature(thread_local)]
 #![recursion_limit = "256"]
 
 
@@ -26,7 +26,6 @@
 #[cfg(target_os = "linux")] extern crate ring;
 #[cfg(target_os = "linux")] extern crate serde;
 #[cfg(target_os = "linux")] #[macro_use] extern crate serde_derive;
-#[cfg(target_os = "linux")] extern crate spin_locks;
 #[cfg(target_os = "linux")] pub extern crate ucx_sys;
 
 
@@ -53,7 +52,7 @@
 #[cfg(target_os = "linux")] use ::libc::FILE;
 #[cfg(target_os = "linux")] use ::libc::sockaddr;
 #[cfg(target_os = "linux")] use ::libc::socklen_t;
-#[cfg(target_os = "linux")] use ::libc_extra::sched::sched_getcpu;
+// #[cfg(target_os = "linux")] use ::libc_extra::sched::sched_getcpu;
 #[cfg(target_os = "linux")] use ::ring::aead::OpeningKey;
 #[cfg(target_os = "linux")] use ::ring::aead::SealingKey;
 #[cfg(target_os = "linux")] use ::std::cell::RefCell;
@@ -151,76 +150,3 @@
 #[cfg(target_os = "linux")] include!("TheirRemotelyAccessibleWorkerEndPointAddress.rs");
 #[cfg(target_os = "linux")] include!("Worker.rs");
 #[cfg(target_os = "linux")] include!("ZeroBasedHyperThreadIndex.rs");
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-NEXT STEPS:
-	- extract the mlx5 bindings into a specific object rather than function pointer callbacks...
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

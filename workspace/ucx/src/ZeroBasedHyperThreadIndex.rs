@@ -16,24 +16,25 @@ impl ZeroBasedHyperThreadIndex
 	#[inline(always)]
 	pub fn for_current_hyper_thread() -> Self
 	{
-		const UnsetSentinel: ZeroBasedHyperThreadIndex = ZeroBasedHyperThreadIndex(::std::u16::MAX);
+		todo!()
+		// const UnsetSentinel: ZeroBasedHyperThreadIndex = ZeroBasedHyperThreadIndex(::std::u16::MAX);
 		
-		#[thread_local] static mut CachedCurrentHyperThreadIndex: ZeroBasedHyperThreadIndex = UnsetSentinel;
+		// #[thread_local] static mut CachedCurrentHyperThreadIndex: ZeroBasedHyperThreadIndex = UnsetSentinel;
 		
-		let current = unsafe { CachedCurrentHyperThreadIndex };
-		if current == UnsetSentinel
-		{
-			// Efficient if VDSO is enabled (which is should be on all modern 4.x series Linux kernels), but, still, should be cached (or put in a thread local) if used repeatedly in tight loops.
-			let result = unsafe { sched_getcpu() };
-			debug_assert!(result >= 0, "sched_getcpu was negative");
-			let current = ZeroBasedHyperThreadIndex(result as u16);
-			unsafe { CachedCurrentHyperThreadIndex = current };
-			current
-		}
-		else
-		{
-			current
-		}
+		// let current = unsafe { CachedCurrentHyperThreadIndex };
+		// if current == UnsetSentinel
+		// {
+		// 	// Efficient if VDSO is enabled (which is should be on all modern 4.x series Linux kernels), but, still, should be cached (or put in a thread local) if used repeatedly in tight loops.
+		// 	let result = unsafe { sched_getcpu() };
+		// 	debug_assert!(result >= 0, "sched_getcpu was negative");
+		// 	let current = ZeroBasedHyperThreadIndex(result as u16);
+		// 	unsafe { CachedCurrentHyperThreadIndex = current };
+		// 	current
+		// }
+		// else
+		// {
+		// 	current
+		// }
 	}
 	
 	/// As an u16.

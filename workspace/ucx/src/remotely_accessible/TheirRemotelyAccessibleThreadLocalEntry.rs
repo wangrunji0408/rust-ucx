@@ -8,7 +8,7 @@
 #[derive(Debug, Default)]
 struct TheirRemotelyAccessibleThreadLocalEntry
 {
-	spin_lock: BestSpinLockForCompilationTarget,
+	// spin_lock: BestSpinLockForCompilationTarget,
 	their_remotely_accessible: UnsafeCell<TheirRemotelyAccessible>,
 }
 
@@ -36,19 +36,22 @@ impl TheirRemotelyAccessibleThreadLocalEntry
 	#[inline(always)]
 	fn acquire_spin_lock(&self)
 	{
-		self.spin_lock.acquire_spin_lock()
+		todo!();
+		// self.spin_lock.acquire_spin_lock()
 	}
 	
 	#[inline(always)]
 	fn try_to_acquire_spin_lock(&self) -> bool
 	{
-		self.spin_lock.try_to_acquire_spin_lock()
+		todo!();
+		// self.spin_lock.try_to_acquire_spin_lock()
 	}
 	
 	#[inline(always)]
 	fn unlock_spin_lock(&self)
 	{
-		self.spin_lock.unlock_spin_lock()
+		todo!();
+		// self.spin_lock.unlock_spin_lock()
 	}
 	
 	#[inline(always)]
